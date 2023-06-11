@@ -17,7 +17,16 @@ const compScore = document.getElementById("two");
 
 const finalWin = document.getElementById("finalWin");
 
+/*
 const reset = document.createElement("button");
+reset.textContent = "Reset the game";
+reset.addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+})
+function resetGame() {
+}
+*/
 
 function getComputerChoice(choices) {
   return choices[Math.floor(Math.random()*(choices.length))];
@@ -50,15 +59,29 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function scores() {
-  const final = document.querySelector('.displayResults');
+  const final = document.querySelector('.scores');
   myScore.textContent = `Your score: ${playerScore}`;
   compScore.textContent = `Computer's score: ${computerScore}`;
   final.append(myScore, compScore);
 }
 
-function resetGame() {
-  playerScore = 0;
-  computerScore = 0;
+function displayResults() {
+  if (playerScore === 5 || computerScore === 5) {
+    if (playerScore > computerScore){
+      finalWin.textContent = "Woahh! You won the game!";
+    }
+    else {
+      finalWin.textContent = "Oops! Computer defeated you!";
+    }
+    disableBtns();
+    finalWin.appendChild(reset);
+  }
+}
+
+function disableBtns() {
+  rock.disabled = true;
+  paper.disabled = true;
+  scissors.disabled = true;
 }
 
 rock.addEventListener("click", () => {
@@ -84,18 +107,3 @@ scissors.addEventListener("click", () => {
   scores();
   displayResults();
 })
-
-function displayResults() {
-  if (playerScore === 5 || computerScore === 5) {
-    if (playerScore > computerScore){
-      finalWin.textContent = "You won the game!";
-    }
-    else {
-      finalWin.textContent = "Computer won the game!";
-    }
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
-  }
-  // reset.
-}
