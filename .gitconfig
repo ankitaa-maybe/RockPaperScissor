@@ -1,0 +1,9 @@
+[user]
+	name = Ankita Kansra
+	email = kansrankita00@gmail.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[core]
+	excludesfile = /Users/ankitakansra/.gitignore_global
